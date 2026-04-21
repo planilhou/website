@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planilhou</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #0F827D; --green-mid: #0d6e6a; --green-dark: #0a5e5a;
+  --green-light: #D9EDEC; --green-xlight: #f0faf9; --green-border: #b2d8d5;
+  --white: #fff; --text: #111827; --text-muted: #6b7280; --text-light: #9ca3af;
+  --bg-off: #f8fffe;
+  --r-md: 12px; --r-lg: 20px; --r-xl: 28px; --r-pill: 999px;
+  --sh-sm: 0 1px 3px rgba(15,130,125,.08);
+  --sh-md: 0 4px 16px rgba(15,130,125,.10);
+  --sh-lg: 0 8px 32px rgba(15,130,125,.13);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--white); color: var(--text); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+/* HEADER */
+header { display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 80px; background: rgba(255,255,255,.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(15,130,125,.1); position: sticky; top: 0; z-index: 200; gap: 16px; }
+.logo-img { height: 56px; width: auto; display: block; }
+nav { display: flex; align-items: center; gap: 4px; }
+nav a { font-size: 14px; color: var(--text-muted); text-decoration: none; font-weight: 500; padding: 7px 14px; border-radius: var(--r-pill); transition: color .2s, background .2s; }
+nav a:hover { color: var(--green); background: var(--green-light); }
+.header-cta { background: var(--green); color: #fff; border: none; border-radius: var(--r-pill); padding: 11px 22px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .2s, transform .15s; white-space: nowrap; box-shadow: 0 2px 8px rgba(15,130,125,.25); }
+.header-cta:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+/* HERO */
+.hero-wrap { background: linear-gradient(135deg, var(--green-xlight) 0%, #fff 55%, var(--green-light) 100%); position: relative; overflow: hidden; }
+.hero-wrap::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(15,130,125,.06) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+.hero { display: flex; align-items: center; justify-content: space-between; padding: 80px 48px 72px; max-width: 1140px; margin: 0 auto; gap: 56px; position: relative; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--green-light); color: var(--green-dark); border: 1px solid var(--green-border); border-radius: var(--r-pill); padding: 5px 14px; font-size: 12px; font-weight: 600; letter-spacing: .4px; margin-bottom: 20px; }
+.hero-text { flex: 1; }
+.hero-text h1 { font-size: 46px; font-weight: 800; line-height: 1.18; margin-bottom: 20px; letter-spacing: -1px; }
+.hero-text h1 span { color: var(--green); }
+.hero-text p { font-size: 18px; color: var(--text-muted); line-height: 1.7; margin-bottom: 36px; max-width: 500px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.hero-stats { display: flex; gap: 32px; margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(15,130,125,.12); }
+.hero-stat-num { font-size: 24px; font-weight: 800; color: var(--green); line-height: 1; margin-bottom: 2px; }
+.hero-stat-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+.hero-mascot { width: 320px; flex-shrink: 0; }
+.hero-mascot img { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(15,130,125,.18)); }
+
+/* BUTTONS */
+.btn-primary { background: var(--green); color: #fff; border: none; border-radius: var(--r-pill); padding: 14px 30px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .2s, transform .15s, box-shadow .2s; display: inline-block; text-decoration: none; box-shadow: 0 2px 10px rgba(15,130,125,.28); }
+.btn-primary:hover { background: var(--green-mid); transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: var(--green); border: 2px solid var(--green); border-radius: var(--r-pill); padding: 13px 30px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background .2s, transform .15s; display: inline-block; text-decoration: none; }
+.btn-secondary:hover { background: var(--green-light); transform: translateY(-2px); }
+
+/* SECTION */
+.section-tag { display: inline-block; background: var(--green-light); color: var(--green-dark); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: var(--r-pill); margin-bottom: 14px; }
+.section-header { text-align: center; margin-bottom: 52px; }
+.section-header h2 { font-size: 34px; font-weight: 800; margin-bottom: 10px; letter-spacing: -.5px; }
+.section-header p { font-size: 17px; color: var(--text-muted); max-width: 500px; margin: 0 auto; }
+
+/* QUIZ */
+#quiz { background: var(--green-light); padding: 88px 48px; position: relative; overflow: hidden; }
+#quiz::before { content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(15,130,125,.1) 0%, transparent 70%); bottom: -150px; left: -80px; pointer-events: none; }
+.quiz-inner { max-width: 680px; margin: 0 auto; position: relative; }
+.quiz-box { background: var(--white); border-radius: var(--r-xl); border: 1px solid var(--green-border); padding: 44px; box-shadow: var(--sh-lg); }
+.prog-wrap { margin-bottom: 28px; }
+.prog-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--green); font-weight: 600; margin-bottom: 8px; }
+.prog-bar { height: 6px; background: var(--green-light); border-radius: 3px; overflow: hidden; }
+.prog-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .5s cubic-bezier(.4,0,.2,1); }
+.plany-row { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+.plany-icon { width: 58px; height: 58px; flex-shrink: 0; border-radius: 50%; object-fit: contain; background: var(--green-light); padding: 4px; box-shadow: 0 2px 8px rgba(15,130,125,.15); }
+.plany-bubble { background: var(--green-light); border-radius: 0 18px 18px 18px; padding: 16px 20px; font-size: 16px; font-weight: 500; color: var(--green-dark); line-height: 1.6; flex: 1; }
+.quiz-opts { display: flex; flex-direction: column; gap: 11px; }
+.opt-btn { background: var(--bg-off); border: 1.5px solid #e5e7eb; border-radius: var(--r-md); padding: 16px 20px 16px 48px; font-size: 15px; font-weight: 500; cursor: pointer; text-align: left; font-family: inherit; color: var(--text); transition: all .15s ease; position: relative; }
+.opt-btn::before { content: ''; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--green-border); background: #fff; transition: all .15s ease; }
+.opt-btn:hover { background: var(--green-xlight); border-color: var(--green-border); transform: translateX(4px); }
+.opt-btn:hover::before { border-color: var(--green); }
+.opt-btn.selected { background: var(--green-light); border-color: var(--green); color: var(--green-dark); font-weight: 600; }
+.opt-btn.selected::before { background: var(--green); border-color: var(--green); box-shadow: inset 0 0 0 3px #fff; }
+.lead-fields { display: flex; flex-direction: column; gap: 13px; margin-top: 8px; }
+.lead-fields input { border: 1.5px solid #e5e7eb; border-radius: var(--r-pill); padding: 15px 22px; font-size: 15px; font-family: inherit; background: var(--bg-off); color: var(--text); outline: none; width: 100%; transition: border-color .2s, box-shadow .2s; }
+.lead-fields input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(15,130,125,.1); background: #fff; }
+.lead-fields input.input-err { border-color: #ef4444; }
+.err-msg { font-size: 13px; color: #dc2626; padding-left: 8px; display: none; }
+.btn-quiz-cta { background: var(--green); color: #fff; border: none; border-radius: var(--r-pill); padding: 16px 0; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; width: 100%; margin-top: 4px; transition: background .2s, transform .15s; box-shadow: 0 2px 10px rgba(15,130,125,.28); }
+.btn-quiz-cta:hover { background: var(--green-mid); transform: translateY(-1px); }
+.privacy-note { font-size: 12px; color: var(--text-light); text-align: center; margin-top: 10px; line-height: 1.5; }
+.btn-back { background: transparent; border: none; color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: inherit; margin-top: 14px; text-decoration: underline; display: block; text-align: center; }
+.btn-back:hover { color: var(--green); }
+.result-box { text-align: center; padding: 8px 0; }
+.result-bingo { font-size: 22px; font-weight: 800; color: var(--green); margin-bottom: 20px; letter-spacing: -.3px; }
+.result-mockup { width: 200px; height: 150px; margin: 0 auto 18px; border-radius: var(--r-md); overflow: hidden; background: var(--green-light); display: flex; align-items: center; justify-content: center; box-shadow: var(--sh-md); }
+.result-mockup img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+.result-label { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+.result-product-name { font-size: 21px; font-weight: 700; margin-bottom: 4px; }
+.result-price { font-size: 26px; font-weight: 800; color: var(--green); margin-bottom: 12px; }
+.result-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.result-email-note { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+.result-email-note strong { color: var(--green); }
+.btn-result { background: var(--green); color: #fff; border: none; border-radius: var(--r-pill); padding: 17px 0; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; width: 100%; transition: background .2s, transform .15s; box-shadow: 0 3px 12px rgba(15,130,125,.3); }
+.btn-result:hover { background: var(--green-mid); transform: translateY(-2px); }
+.btn-restart { background: transparent; border: none; color: var(--text-muted); font-size: 13px; cursor: pointer; margin-top: 14px; font-family: inherit; text-decoration: underline; display: block; text-align: center; }
+
+/* PRODUTOS */
+#produtos { padding: 88px 48px; max-width: 1140px; margin: 0 auto; }
+.cat-row { display: flex; align-items: center; gap: 12px; margin-top: 48px; margin-bottom: 20px; }
+.cat-label { display: inline-block; background: var(--green-light); color: var(--green-dark); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: var(--r-pill); white-space: nowrap; }
+.cat-line { flex: 1; height: 1px; background: var(--green-border); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 22px; }
+.product-card { background: var(--white); border: 1.5px solid #e8f5f4; border-radius: var(--r-lg); padding: 24px; display: flex; flex-direction: column; gap: 10px; transition: border-color .25s, transform .25s, box-shadow .25s; box-shadow: var(--sh-sm); }
+.product-card:hover { border-color: var(--green-border); transform: translateY(-5px); box-shadow: var(--sh-md); }
+.product-card.featured { border-color: var(--green); border-width: 2px; position: relative; background: var(--green-xlight); }
+.featured-badge { position: absolute; top: -13px; left: 20px; background: var(--green); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 14px; border-radius: var(--r-pill); box-shadow: 0 2px 8px rgba(15,130,125,.3); }
+.product-img-wrap { width: 100%; height: 155px; background: var(--green-light); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 4px; }
+.product-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 10px; transition: transform .3s ease; }
+.product-card:hover .product-img-wrap img { transform: scale(1.04); }
+.product-name { font-size: 15px; font-weight: 700; line-height: 1.3; }
+.product-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; flex: 1; }
+.product-price { font-size: 21px; font-weight: 800; color: var(--green); letter-spacing: -.3px; }
+.btn-buy { background: var(--green); color: #fff; border: none; border-radius: var(--r-pill); padding: 12px 0; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; width: 100%; transition: background .2s, transform .15s; text-decoration: none; display: block; text-align: center; box-shadow: 0 2px 8px rgba(15,130,125,.22); }
+.btn-buy:hover { background: var(--green-mid); transform: translateY(-1px); }
+.soon-badge { display: inline-block; background: #fef3c7; color: #92400e; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: var(--r-pill); margin-bottom: 2px; }
+
+/* PLAYCHAT */
+#playchat { background: var(--green); padding: 88px 48px; text-align: center; position: relative; overflow: hidden; }
+#playchat::before { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.07) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+#playchat::after { content: ''; position: absolute; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.05) 0%, transparent 70%); bottom: -120px; left: -80px; pointer-events: none; }
+.playchat-inner { max-width: 520px; margin: 0 auto; position: relative; }
+.chip { display: inline-block; background: rgba(255,255,255,.2); color: #fff; border: 1px solid rgba(255,255,255,.3); border-radius: var(--r-pill); font-size: 11px; font-weight: 700; padding: 4px 14px; margin-bottom: 14px; letter-spacing: 1px; }
+.playchat-inner h2 { font-size: 32px; font-weight: 800; margin-bottom: 12px; color: #fff; letter-spacing: -.5px; }
+.playchat-inner p { font-size: 17px; color: rgba(255,255,255,.8); margin-bottom: 32px; line-height: 1.6; }
+.playchat-mascot { width: 180px; height: auto; margin: 0 auto 24px; display: block; filter: drop-shadow(0 8px 20px rgba(0,0,0,.15)); }
+.playchat-form { display: flex; flex-direction: column; gap: 13px; max-width: 380px; margin: 0 auto; }
+.playchat-form input { border: 1.5px solid rgba(255,255,255,.4); border-radius: var(--r-pill); padding: 15px 22px; font-size: 15px; font-family: inherit; background: rgba(255,255,255,.18); color: #fff; outline: none; transition: border-color .2s, background .2s; }
+.playchat-form input::placeholder { color: rgba(255,255,255,.65); }
+.playchat-form input:focus { border-color: rgba(255,255,255,.85); background: rgba(255,255,255,.25); box-shadow: 0 0 0 3px rgba(255,255,255,.1); }
+.playchat-form input.pc-err { border-color: #fca5a5; background: rgba(239,68,68,.15); }
+.btn-vip { background: #fff; color: var(--green-dark); border: none; border-radius: var(--r-pill); padding: 16px 0; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; width: 100%; transition: transform .15s, box-shadow .2s; box-shadow: 0 3px 14px rgba(0,0,0,.15); }
+.btn-vip:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,0,0,.2); }
+.pc-err-msg { font-size: 13px; color: #fca5a5; text-align: center; display: none; margin-top: -4px; }
+
+/* POPUP VIP */
+.popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+.popup-overlay.active { opacity: 1; pointer-events: all; }
+.popup-box { background: #fff; border-radius: var(--r-xl); padding: 44px 40px; max-width: 480px; width: 100%; text-align: center; transform: translateY(20px) scale(.96); transition: transform .3s ease; box-shadow: 0 24px 60px rgba(0,0,0,.18); position: relative; }
+.popup-overlay.active .popup-box { transform: translateY(0) scale(1); }
+.popup-close { position: absolute; top: 16px; right: 16px; background: var(--green-light); border: none; border-radius: 50%; width: 32px; height: 32px; font-size: 16px; cursor: pointer; color: var(--green-dark); font-family: inherit; transition: background .2s; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.popup-close:hover { background: var(--green-border); }
+.popup-mascot { width: 100px; height: auto; margin: 0 auto 16px; display: block; }
+.popup-badge { display: inline-block; background: var(--green); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 4px 16px; border-radius: var(--r-pill); margin-bottom: 16px; }
+.popup-title { font-size: 24px; font-weight: 800; color: var(--text); margin-bottom: 10px; letter-spacing: -.3px; }
+.popup-title span { color: var(--green); }
+.popup-msg { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+.popup-btn-main { background: var(--green); color: #fff; border: none; border-radius: var(--r-pill); padding: 14px 32px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; width: 100%; margin-bottom: 10px; transition: background .2s, transform .15s; box-shadow: 0 2px 10px rgba(15,130,125,.28); }
+.popup-btn-main:hover { background: var(--green-mid); transform: translateY(-1px); }
+.popup-btn-close { background: transparent; border: none; color: var(--text-muted); font-size: 13px; cursor: pointer; font-family: inherit; text-decoration: underline; }
+
+/* AVALIACOES */
+#avaliacoes { padding: 88px 48px; background: var(--bg-off); }
+.avaliacoes-inner { max-width: 1140px; margin: 0 auto; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.review-card { background: var(--white); border: 1.5px solid #e8f5f4; border-radius: var(--r-lg); padding: 28px; transition: transform .25s, box-shadow .25s; box-shadow: var(--sh-sm); }
+.review-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+.stars { color: #f59e0b; font-size: 17px; margin-bottom: 12px; letter-spacing: 2px; }
+.review-text { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+.reviewer { font-size: 14px; font-weight: 600; color: var(--text); }
+
+/* CTA */
+#cta-section { padding: 88px 48px; text-align: center; background: var(--white); position: relative; overflow: hidden; }
+#cta-section::before { content: ''; position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(217,237,236,.5) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+.cta-inner { max-width: 700px; margin: 0 auto; position: relative; }
+.cta-inner h2 { font-size: 38px; font-weight: 800; line-height: 1.2; margin-bottom: 18px; letter-spacing: -.5px; }
+.cta-inner h2 span { color: var(--green); }
+.cta-inner p { font-size: 18px; color: var(--text-muted); margin-bottom: 36px; line-height: 1.7; }
+.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-guarantee { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 13px; color: var(--text-muted); }
+.cta-guarantee span { color: var(--green); font-weight: 600; }
+
+/* FAQ */
+#duvidas { background: var(--bg-off); padding: 88px 48px; }
+.faq-inner { max-width: 720px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #e5e7eb; }
+.faq-q { width: 100%; text-align: left; background: none; border: none; font-family: inherit; font-size: 16px; font-weight: 500; padding: 22px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text); gap: 16px; transition: color .2s; }
+.faq-q:hover { color: var(--green); }
+.faq-icon { font-size: 18px; color: var(--green); flex-shrink: 0; transition: transform .25s; width: 28px; height: 28px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-style: normal; line-height: 1; }
+.faq-q.open .faq-icon { transform: rotate(45deg); }
+.faq-a { font-size: 15px; color: var(--text-muted); line-height: 1.75; padding-bottom: 22px; display: none; }
+.faq-a.open { display: block; }
+
+/* FOOTER */
+footer { background: var(--text); color: #fff; padding: 52px 48px; text-align: center; }
+.guarantee-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: var(--r-pill); padding: 10px 24px; font-size: 14px; font-weight: 600; margin-bottom: 28px; }
+.footer-links { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,.6); text-decoration: none; font-size: 14px; padding: 6px 14px; border-radius: var(--r-pill); transition: color .2s, background .2s; }
+.footer-links a:hover { color: #fff; background: rgba(255,255,255,.1); }
+.copyright { font-size: 13px; color: rgba(255,255,255,.35); font-weight: 300; }
+
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  header nav { display: none; }
+  .logo-img { height: 44px; }
+  .hero { flex-direction: column-reverse; padding: 52px 24px 48px; text-align: center; gap: 32px; }
+  .hero-text h1 { font-size: 32px; }
+  .hero-text p { margin: 0 auto 28px; }
+  .hero-btns, .hero-stats { justify-content: center; }
+  .hero-mascot { width: 200px; margin: 0 auto; }
+  #quiz, #playchat, #duvidas, footer, #cta-section, #avaliacoes { padding: 56px 24px; }
+  #produtos { padding: 56px 24px; }
+  .quiz-box { padding: 28px 22px; }
+  .cta-inner h2 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- POPUP VIP -->
+<div class="popup-overlay" id="vip-popup">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()">&#10005;</button>
+    <img class="popup-mascot" src="https://i.ibb.co/YTkS2LRL/Plany-Expressions-and-Situations-4.png" alt="Plany">
+    <div class="popup-badge">VIPlany Club</div>
+    <div class="popup-title" id="popup-title">Voce e do <span>VIPlany Club!</span></div>
+    <div class="popup-msg" id="popup-msg"></div>
+    <button class="popup-btn-main" onclick="closePopupAndScroll()">Ver todos os produtos</button>
+    <br>
+    <button class="popup-btn-close" onclick="closePopup()">Fechar</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <img class="logo-img" src="https://i.ibb.co/Zp35fTwm/Logo-Horizontal.png" alt="Planilhou">
+  <nav>
+    <a href="#quiz">Quiz</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#avaliacoes">Avaliações</a>
+    <a href="#playchat">PlanyChat</a>
+    <a href="#duvidas">Dúvidas</a>
+  </nav>
+  <button class="header-cta" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Qual é a sua planilha ideal? &#8594;</button>
+</header>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">Planilhas visuais e inteligentes</div>
+      <h1>Organize seu dinheiro e sua rotina <span>sem complicação.</span></h1>
+      <p>Ferramentas visuais e intuitivas para quem quer parar de patinar na vida financeira e nos hábitos.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Fazer o Plany<em>Quiz</em></button>
+        <button class="btn-secondary" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">Ver todos os produtos</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">9+</div><div class="hero-stat-label">Produtos disponíveis</div></div>
+        <div><div class="hero-stat-num">7 dias</div><div class="hero-stat-label">Garantia total</div></div>
+        <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Visual e intuitivo</div></div>
+      </div>
+    </div>
+    <div class="hero-mascot">
+      <img src="https://i.ibb.co/HfNSDf4R/Plany-Expressions-and-Situations-1.png" alt="Plany">
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="quiz-inner">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div class="section-tag">Quiz interativo</div>
+      <h2 style="font-size:34px;font-weight:800;margin-bottom:10px;letter-spacing:-.5px;">
+        Plany<span style="color:#0F827D; font-style: normal;">Quiz</span>
+      </h2>
+      <p style="font-size:17px;color:#6b7280;max-width:440px;margin:0 auto;">Responda algumas perguntas e descubra a planilha feita para você.</p>
+    </div>
+    <div class="quiz-box" id="qbox"></div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="section-header">
+    <div class="section-tag">Catálogo completo</div>
+    <h2>Todos os produtos</h2>
+    <p>Escolha por categoria ou deixe o Plany te indicar o ideal.</p>
+  </div>
+
+  <div class="cat-row"><div class="cat-label">Finanças</div><div class="cat-line"></div></div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img-wrap"><img src="https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png" alt="Planilhou Financas"></div>
+      <div class="product-name">Planilhou Finanças</div>
+      <div class="product-desc">Controle visual e prático para entradas, saídas e metas mensais.</div>
+      <div class="product-price">R$ 21,99</div>
+      <a class="btn-buy" href="https://chk.eduzz.com/89AQZ8E6WD" target="_blank">Comprar Agora</a>
+    </div>
+    <div class="product-card">
+      <div class="product-img-wrap"><img src="https://i.ibb.co/s9Q0mY0t/Ebook.png" alt="Ebook"></div>
+      <div class="product-name">Ebook Planilhou Finanças</div>
+      <div class="product-desc">20 estratégias para dominar seu dinheiro de vez. O par perfeito da planilha.</div>
+      <div class="product-price">R$ 9,99</div>
+      <a class="btn-buy" href="https://chk.eduzz.com/Q9N5N8VK01" target="_blank">Comprar Agora</a>
+    </div>
+  </div>
+
+  <div class="cat-row"><div class="cat-label">Rotina</div><div class="cat-line"></div></div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img-wrap"><img src="https://i.ibb.co/Wp4VF3jj/Planilhou-Ha-bitos.png" alt="Habitos"></div>
+      <div class="product-name">Planilhou Hábitos</div>
+      <div class="product-desc">Crie constância e acompanhe seus hábitos diários com leveza e clareza.</div>
+      <div class="product-price">R$ 21,99</div>
+      <a class="btn-buy" href="https://chk.eduzz.com/69KA87480O" target="_blank">Comprar Agora</a>
+    </div>
+  </div>
+
+  <div class="cat-row"><div class="cat-label">Projetos específicos</div><div class="cat-line"></div></div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img-wrap"><img src="https://i.ibb.co/hx5D5WjG/Planilhou-Novo-Lar.png" alt="Novo Lar"></div>
+      <div class="product-name">Planilhou Novo Lar</div>
+      <div class="product-desc">Organize visitas e compare apartamentos na busca do seu lugar ideal.</div>
+      <div class="product-price">R$ 29,90</div>
+      <a class="btn-buy" href="https://chk.eduzz.com/7977P6KV9E" target="_blank">Comprar Agora</a>
+    </div>
+    <div class="product-card">
+      <div class="product-img-wrap"><img src="https://i.ibb.co/4wjcGptT/Planilhou-Ha-bitos-3.png" alt="Wishlist"></div>
+      <div class="product-name">Planilhou Wishlist</div>
+      <div class="product-desc">Compre o que deseja com prioridade e sem furar o orçamento.</div>
+      <div class="product-price">R$ 29,90</div>
+      <a class="btn-buy" href="https://chk.eduzz.com/6W48X7GY0Z" target="_blank">Comprar Agora</a>
+    </div>
+  </div>
+
+  <div class="cat-row"><div class="cat-label">Combos</div><div class="cat-line"></div></div>
+  <div class="products-grid">
+
+    <div class="product-card featured">
+      <div class="featured-badge">Mais vendido</div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/99YR4Wh1/Planilhou-Ha-bitos-2.png" alt="Combo Life Hack"></div>
+      <div class="product-name">Combo Life Hack</div>
+      <div class="product-desc">Finanças + Hábitos. Reset completo na sua vida financeira e rotina.</div>
+      <div class="product-price">R$ 39,90</div>
+      <a class="btn-buy" href="https://chk.eduzz.com/39ZQ4ZED9E" target="_blank">Comprar Agora</a>
+    </div>
+
+    <div class="product-card featured" style="margin-top:0;">
+      <div class="featured-badge">Novo</div>
+      <div class="product-img-wrap">
+        <img src="https://i.ibb.co/4wjcGptT/Planilhou-Ha-bitos-3.png" alt="Combo Bolso Inteligente" style="width:50%;height:50%;object-fit:contain;padding:4px;">
+        <img src="https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png" alt="" style="width:50%;height:50%;object-fit:contain;padding:4px;">
+      </div>
+      <div class="product-name">Combo Bolso Inteligente</div>
+      <div class="product-desc">Planilhou Finanças + Wishlist. Para quem quer comprar com consciência e manter o orçamento no azul.</div>
+      <div class="product-price">R$ 47,99</div>
+      <a class="btn-buy" href="INSIRA LINK AQUI" target="_blank">Comprar Agora</a>
+    </div>
+
+    <div class="product-card featured" style="margin-top:0;">
+      <div class="featured-badge">Novo</div>
+      <div class="product-img-wrap">
+        <img src="https://i.ibb.co/hx5D5WjG/Planilhou-Novo-Lar.png" alt="Combo Lar dos Sonhos" style="width:50%;height:50%;object-fit:contain;padding:4px;">
+        <img src="https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png" alt="" style="width:50%;height:50%;object-fit:contain;padding:4px;">
+      </div>
+      <div class="product-name">Combo Lar dos Sonhos</div>
+      <div class="product-desc">Planilhou Finanças + Novo Lar. Para quem quer alugar um apto sem perder o controle financeiro.</div>
+      <div class="product-price">R$ 47,99</div>
+      <a class="btn-buy" href="INSIRA LINK AQUI" target="_blank">Comprar Agora</a>
+    </div>
+
+    <div class="product-card featured" style="margin-top:0;">
+      <div class="featured-badge">Novo</div>
+      <div class="product-img-wrap" style="flex-wrap:wrap;gap:2px;">
+        <img src="https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png" alt="" style="width:33%;height:100%;object-fit:contain;padding:4px;">
+        <img src="https://i.ibb.co/4wjcGptT/Planilhou-Ha-bitos-3.png" alt="" style="width:33%;height:100%;object-fit:contain;padding:4px;">
+        <img src="https://i.ibb.co/Wp4VF3jj/Planilhou-Ha-bitos.png" alt="" style="width:33%;height:100%;object-fit:contain;padding:4px;">
+      </div>
+      <div class="product-name">Combo Life Pro</div>
+      <div class="product-desc">Planilhou Finanças + Wishlist + Hábitos. O trio completo para quem quer transformar vida financeira, hábitos e compras de uma vez.</div>
+      <div class="product-price">R$ 67,99</div>
+      <a class="btn-buy" href="INSIRA LINK AQUI" target="_blank">Comprar Agora</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PLAYCHAT -->
+<section id="playchat">
+  <div class="playchat-inner">
+    <div class="chip">EM BREVE</div>
+    <img class="playchat-mascot" src="https://i.ibb.co/YTkS2LRL/Plany-Expressions-and-Situations-4.png" alt="PlanyChat">
+    <h2>Vem aí: PlanyChat</h2>
+    <p>A Inteligência Artificial que vai conversar com as suas finanças.</p>
+    <div class="playchat-form">
+      <input type="text" id="pc-nome" placeholder="Seu nome">
+      <input type="email" id="pc-email" placeholder="Seu melhor e-mail">
+      <div class="pc-err-msg" id="pc-err-msg">Por favor, preencha nome e e-mail válidos.</div>
+      <button class="btn-vip" id="btn-vip" onclick="submitPlaychat()">Entrar na Lista VIP</button>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIACOES -->
+<section id="avaliacoes">
+  <div class="avaliacoes-inner">
+    <div class="section-header">
+      <div class="section-tag">Prova social</div>
+      <h2>O que dizem nossos clientes</h2>
+      <p>Avaliações reais de quem já organizou a vida com o Planilhou.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">"Finalmente entendi para onde meu dinheiro ia indo. A planilha e linda e super facil de usar!"</div>
+        <div class="reviewer">Ana Clara M.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">"Comprei o Combo Life Hack e em 30 dias já criei hábitos que nunca consegui manter antes."</div>
+        <div class="reviewer">Rodrigo F.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">"A Wishlist me salvou de compras por impulso. Agora priorizo o que realmente quero."</div>
+        <div class="reviewer">Juliana K.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">"Usei o Novo Lar para organizar 12 visitas de apartamento. Facilitou demais a decisao!"</div>
+        <div class="reviewer">Marcus V.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-section">
+  <div class="cta-inner">
+    <div class="section-tag">Pronto para comecar?</div>
+    <h2>Sua vida organizada <span>começa hoje.</span></h2>
+    <p>Mais de 9 ferramentas visuais esperando por você. Sem Excel avançado, sem complicação.</p>
+    <div class="cta-btns">
+      <button class="btn-primary" style="font-size:16px;padding:16px 36px;" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Descobrir minha planilha ideal</button>
+      <button class="btn-secondary" style="font-size:16px;padding:15px 36px;" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">Ver todos os produtos</button>
+    </div>
+    <div class="cta-guarantee">&#128737; <span>Garantia de 7 dias</span> &mdash; 100% do valor de volta, sem perguntas.</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="duvidas">
+  <div class="faq-inner">
+    <div class="section-header">
+      <div class="section-tag">Dúvidas</div>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Precisa saber Excel avançado para usar? <i class="faq-icon">+</i></button>
+      <div class="faq-a">Não! Todas as planilhas são prontas para usar. Você só preenche seus dados sem fórmulas ou conhecimento técnico.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Como recebo o acesso após a compra? <i class="faq-icon">+</i></button>
+      <div class="faq-a">Imediatamente após a confirmação do pagamento você recebe um e-mail com o link de acesso no Google Drive ou arquivo para download.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Funciona no celular? <i class="faq-icon">+</i></button>
+      <div class="faq-a">Sim! Todas as planilhas funcionam no Google Sheets, acessível pelo navegador do celular ou pelo app gratuito.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Tem garantia? <i class="faq-icon">+</i></button>
+      <div class="faq-a">Sim, 7 dias de garantia incondicional. Se não gostar por qualquer motivo, devolvemos 100% do valor sem perguntas.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Posso usar em mais de um dispositivo? <i class="faq-icon">+</i></button>
+      <div class="faq-a">Sim! Por serem em Google Sheets, você acessa de qualquer dispositivo com a mesma conta Google, em qualquer lugar.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="guarantee-badge">&#128737; Garantia de 7 dias &mdash; 100% do valor de volta</div>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Suporte</a>
+    <a href="#">Termos</a>
+    <a href="#quiz">Fazer o Quiz</a>
+  </div>
+  <div class="copyright">&copy; 2025 Planilhou. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+/* ═══ SUPABASE ═══ */
+var SUPA_URL = 'https://kvpxclkgechikodngwcl.supabase.co';
+var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt2cHhjbGtnZWNoaWtvZG5nd2NsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0NTMxMTYsImV4cCI6MjA5MjAyOTExNn0.yAcrQwQH4-wx2FrD1DJSwdS_f-sRLsr8WXzaDHAq_V8';
+
+function supaInsert(table, payload, cb) {
+  var wantId = (table === 'quiz_leads');
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', SUPA_URL + '/rest/v1/' + table, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('apikey', SUPA_KEY);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + SUPA_KEY);
+  xhr.setRequestHeader('Prefer', wantId ? 'return=representation' : 'return=minimal');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      var ok = xhr.status >= 200 && xhr.status < 300;
+      var data = null;
+      if (wantId) { try { data = JSON.parse(xhr.responseText); } catch(e) {} }
+      if (cb) cb(ok, data);
+    }
+  };
+  xhr.send(JSON.stringify(payload));
+}
+
+function supaUpdate(table, id, payload, cb) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('PATCH', SUPA_URL + '/rest/v1/' + table + '?id=eq.' + id, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('apikey', SUPA_KEY);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + SUPA_KEY);
+  xhr.setRequestHeader('Prefer', 'return=minimal');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && cb) cb(xhr.status >= 200 && xhr.status < 300);
+  };
+  xhr.send(JSON.stringify(payload));
+}
+
+function genSessionId() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0;
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+}
+
+/* ═══ QUIZ DATA ═══ */
+var PLANY = '<img class="plany-icon" src="https://i.ibb.co/HfNSDf4R/Plany-Expressions-and-Situations-1.png" alt="Plany">';
+
+var productData = {
+  financas:  { name:'Planilhou Financas',          price:'R$ 21,99', link:'https://chk.eduzz.com/89AQZ8E6WD',  codigo:'PLANY-PLAN-ENTR-001', desc:'Controle visual e prático das suas entradas e saídas.',                                     img:'https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png' },
+  ebook:     { name:'Ebook Planilhou Financas',    price:'R$ 9,99',  link:'https://chk.eduzz.com/Q9N5N8VK01', codigo:'PLANY-EBOO-SIMP-002', desc:'20 estratégias para dominar seu bolso. O par ideal com a planilha.',                        img:'https://i.ibb.co/s9Q0mY0t/Ebook.png' },
+  habitos:   { name:'Planilhou Habitos',           price:'R$ 21,99', link:'https://chk.eduzz.com/69KA87480O', codigo:'PLANY-PLAN-ENTR-002', desc:'Crie constância e acompanhe hábitos diários com leveza.',                                  img:'https://i.ibb.co/Wp4VF3jj/Planilhou-Ha-bitos.png' },
+  wishlist:  { name:'Planilhou Wishlist',          price:'R$ 29,90', link:'https://chk.eduzz.com/6W48X7GY0Z', codigo:'PLANY-PLAN-COMP-002', desc:'Compre o que deseja com prioridade e sem furar o orçamento.',                            img:'https://i.ibb.co/4wjcGptT/Planilhou-Ha-bitos-3.png' },
+  novoLar:   { name:'Planilhou Novo Lar',          price:'R$ 29,90', link:'https://chk.eduzz.com/7977P6KV9E', codigo:'PLANY-PLAN-COMP-002', desc:'Organize visitas e compare apartamentos com clareza.',                                    img:'https://i.ibb.co/hx5D5WjG/Planilhou-Novo-Lar.png' },
+  lifeHack:  { name:'Combo Life Hack',             price:'R$ 39,90', link:'https://chk.eduzz.com/39ZQ4ZED9E', codigo:'PLANY-COMB-NUM1-002', desc:'Finanças + Hábitos. O pacote completo para dar um reset na sua vida.',                           img:'https://i.ibb.co/99YR4Wh1/Planilhou-Ha-bitos-2.png' },
+  bolsoInt:  { name:'Combo Bolso Inteligente',     price:'R$ 47,99', link:'INSIRA LINK AQUI',                  codigo:'PLANY-COMB-NUM3-002', desc:'Finanças + Wishlist. Organize o orçamento e compre o que deseja sem culpa.',            img:'https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png' },
+  larSonhos: { name:'Combo Lar dos Sonhos',        price:'R$ 47,99', link:'INSIRA LINK AQUI',                  codigo:'PLANY-COMB-NUM3-002', desc:'Finanças + Novo Lar. Realize o sonho do apartamento com o orçamento no controle.',     img:'https://i.ibb.co/hx5D5WjG/Planilhou-Novo-Lar.png' },
+  lifePro:   { name:'Combo Life Pro',              price:'R$ 67,99', link:'INSIRA LINK AQUI',                  codigo:'PLANY-COMB-NUM4-003', desc:'Finanças + Wishlist + Hábitos. Transformação completa: dinheiro, compras e constância.',img:'https://i.ibb.co/Wp4VF3jj/Planilhou-Ha-bitos.png' }
+};
+
+var tieBreaker = ['lifePro','lifeHack','bolsoInt','larSonhos','wishlist','novoLar','financas','habitos','ebook'];
+
+var quizSteps = [
+  {
+    id: 'q1', progress: 16, label: 'Passo 1 de 6',
+    question: 'Qual é a sua maior dor hoje?',
+    opts: [
+      { text: 'Meu dinheiro some e não sei para onde foi',             pts: { financas:3, ebook:2, lifeHack:2, bolsoInt:2 } },
+      { text: 'Começo hábitos mas não consigo manter por mais de uma semana', pts: { habitos:3, lifeHack:2, lifePro:2 } },
+      { text: 'Tenho os dois problemas: finanças e hábitos em caos',   pts: { lifeHack:4, lifePro:3, financas:1, habitos:1 } },
+      { text: 'Quero comprar coisas que desejo mas fico sem dinheiro', pts: { wishlist:3, bolsoInt:3, lifePro:2 } },
+      { text: 'Estou procurando um apartamento e preciso organizar tudo', pts: { novoLar:4, larSonhos:3 } }
+    ]
+  },
+  {
+    id: 'q2', progress: 32, label: 'Passo 2 de 6',
+    question: 'Como você se descreveria em relação ao dinheiro hoje?',
+    opts: [
+      { text: 'Iniciante: nunca controlei de verdade, não sei por onde começar', pts: { financas:3, ebook:2, lifeHack:1 } },
+      { text: 'Já sei o básico mas quero aprender estratégias avançadas',        pts: { ebook:3, financas:1, lifeHack:1 } },
+      { text: 'Gasto demais em compras e não consigo priorizar o que quero',     pts: { wishlist:3, bolsoInt:2, lifePro:2 } },
+      { text: 'Minha situação financeira está ok, meu problema é outro',         pts: { habitos:2, novoLar:1, wishlist:1 } },
+      { text: 'Preciso economizar para uma meta grande como um apartamento',     pts: { novoLar:2, larSonhos:3, financas:1 } }
+    ]
+  },
+  {
+    id: 'q3', progress: 48, label: 'Passo 3 de 6',
+    question: 'O que mais combina com o jeito que você quer se organizar?',
+    opts: [
+      { text: 'Quero algo visual e prático: abro e já uso',                         pts: { financas:2, habitos:2, wishlist:1, novoLar:1 } },
+      { text: 'Quero aprender estratégias antes de colocar em prática',             pts: { ebook:4, financas:1 } },
+      { text: 'Quero algo que cubra vários aspectos da minha vida ao mesmo tempo',  pts: { lifePro:4, lifeHack:2, bolsoInt:1 } },
+      { text: 'Quero foco total em um projeto específico, sem distração',           pts: { novoLar:2, wishlist:2, habitos:1 } }
+    ]
+  },
+  {
+    id: 'q4', progress: 64, label: 'Passo 4 de 6',
+    question: 'Nos próximos 3 meses, qual é o seu maior objetivo?',
+    opts: [
+      { text: 'Parar de terminar o mês no vermelho e começar a guardar',          pts: { financas:3, ebook:1, lifeHack:1 } },
+      { text: 'Criar constância nos meus hábitos e rotina',                       pts: { habitos:3, lifeHack:1, lifePro:1 } },
+      { text: 'Comprar coisas que desejo sem me endividar',                       pts: { wishlist:3, bolsoInt:2, lifePro:1 } },
+      { text: 'Alugar ou comprar um apartamento',                                  pts: { novoLar:3, larSonhos:2 } },
+      { text: 'Transformar minha vida: dinheiro, hábitos e compras de uma vez',   pts: { lifePro:4, lifeHack:2, bolsoInt:1 } }
+    ]
+  },
+  {
+    id: 'q5', progress: 80, label: 'Passo 5 de 6',
+    question: 'Você já tentou se organizar antes. O que aconteceu?',
+    opts: [
+      { text: 'Nunca tentei de verdade, esse é meu primeiro passo',      pts: { financas:2, ebook:2, habitos:1 } },
+      { text: 'Tentei mas sem uma ferramenta certa, ficou confuso',      pts: { financas:2, habitos:2, wishlist:1 } },
+      { text: 'Comecei mas perdi a motivação e a constância',            pts: { habitos:3, lifeHack:2, lifePro:1 } },
+      { text: 'Me organizo em algumas áreas, mas outras estão em caos',  pts: { lifePro:3, lifeHack:1, bolsoInt:1 } }
+    ]
+  },
+  {
+    id: 'q6', progress: 95, label: 'Passo 6 de 6',
+    question: 'Quanto você está disposto a investir na sua organização agora?',
+    opts: [
+      { text: 'O menor valor possível para dar o primeiro passo',                pts: { ebook:3, financas:1 } },
+      { text: 'Algo acessível que resolva o meu problema específico',            pts: { financas:2, habitos:2, wishlist:1, novoLar:1 } },
+      { text: 'Quero o melhor custo-benefício mesmo que seja um pouco mais',     pts: { lifeHack:2, bolsoInt:2, larSonhos:2 } },
+      { text: 'Invisto no pacote mais completo se for o certo para mim',         pts: { lifePro:4, lifeHack:2 } }
+    ]
+  }
+];
+
+/* ═══ ESTADO ═══
+  fase:
+    'cta'       → tela inicial com botão de iniciar
+    'quiz'      → respondendo perguntas (currentStep 0..5)
+    'spinner'   → calculando resultado (2-3s)
+    'unlock'    → formulário nome+email para desbloquear
+    'result'    → resultado revelado
+*/
+var state = {
+  fase: 'cta',
+  currentStep: 0,
+  answers: {},
+  scores: {},
+  sessionId: genSessionId(),
+  leadId: null,
+  name: '',
+  email: ''
+};
+
+function initScores() {
+  state.scores = {};
+  var keys = Object.keys(productData);
+  for (var i = 0; i < keys.length; i++) state.scores[keys[i]] = 0;
+}
+
+function calcResult() {
+  var best = tieBreaker[tieBreaker.length - 1];
+  var bestScore = -1;
+  for (var i = 0; i < tieBreaker.length; i++) {
+    var k = tieBreaker[i];
+    var s = state.scores[k] || 0;
+    if (s > bestScore) { bestScore = s; best = k; }
+  }
+  return best;
+}
+
+/* ─── RENDER CTA (tela inicial) ─── */
+function renderCta() {
+  var box = document.getElementById('qbox');
+  box.style.background = 'transparent';
+  box.style.border = 'none';
+  box.style.boxShadow = 'none';
+  box.style.padding = '0';
+
+  var html = '';
+  html += '<style>';
+  html += '@keyframes pq-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}';
+  html += '@keyframes pq-glow{0%,100%{box-shadow:0 0 24px rgba(15,130,125,.3),0 0 0 1px rgba(15,210,200,.15)}50%{box-shadow:0 0 48px rgba(15,130,125,.6),0 0 0 1px rgba(15,210,200,.3)}}';
+  html += '@keyframes pq-scan{0%{top:-10%}100%{top:110%}}';
+  html += '.pq-wrap{position:relative;overflow:hidden;border-radius:24px;padding:40px 32px 36px;text-align:center;background:linear-gradient(135deg,rgba(10,94,90,.97) 0%,rgba(15,130,125,.92) 50%,rgba(8,52,50,.98) 100%);border:1px solid rgba(15,210,200,.22);}';
+  html += '.pq-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(15,210,200,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(15,210,200,.06) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;}';
+  html += '.pq-scan-line{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(15,210,200,.5) 50%,transparent 100%);animation:pq-scan 4s ease-in-out infinite;pointer-events:none;}';
+  html += '.pq-corner{position:absolute;width:16px;height:16px;border-color:rgba(15,210,200,.5);border-style:solid;}';
+  html += '.pq-tl{top:12px;left:12px;border-width:2px 0 0 2px;}';
+  html += '.pq-tr{top:12px;right:12px;border-width:2px 2px 0 0;}';
+  html += '.pq-bl{bottom:12px;left:12px;border-width:0 0 2px 2px;}';
+  html += '.pq-br{bottom:12px;right:12px;border-width:0 2px 2px 0;}';
+  html += '.pq-logo-row{font-size:11px;font-weight:700;letter-spacing:4px;color:rgba(15,210,200,.6);text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;justify-content:center;gap:10px;}';
+  html += '.pq-dot{width:5px;height:5px;border-radius:50%;background:rgba(15,210,200,.7);}';
+  html += '.pq-mascot{width:78px;height:78px;border-radius:50%;object-fit:contain;background:rgba(217,237,236,.1);padding:6px;margin:0 auto 18px;display:block;border:1px solid rgba(15,210,200,.18);animation:pq-float 3.2s ease-in-out infinite,pq-glow 3.2s ease-in-out infinite;}';
+  html += '.pq-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.3px;margin-bottom:8px;line-height:1.3;position:relative;}';
+  html += '.pq-title em{color:rgba(100,230,220,.95);font-style:normal;}';
+  html += '.pq-sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.65;margin-bottom:24px;max-width:340px;margin-left:auto;margin-right:auto;position:relative;}';
+  html += '.pq-pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:26px;position:relative;}';
+  html += '.pq-pill{background:rgba(15,210,200,.08);color:rgba(150,240,230,.85);border:1px solid rgba(15,210,200,.18);font-size:11px;font-weight:600;padding:4px 11px;border-radius:999px;letter-spacing:.2px;}';
+  html += '.pq-btn{width:100%;background:linear-gradient(135deg,rgba(15,140,133,1),rgba(10,80,76,1));color:#fff;border:1px solid rgba(15,210,200,.3);border-radius:999px;padding:16px 0;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .2s,transform .15s;letter-spacing:.2px;position:relative;}';
+  html += '.pq-btn:hover{opacity:.88;transform:translateY(-2px);}';
+  html += '.pq-fine{font-size:11px;color:rgba(255,255,255,.3);margin-top:12px;position:relative;}';
+  html += '</style>';
+
+  html += '<div class="pq-wrap">';
+  html += '<div class="pq-grid"></div>';
+  html += '<div class="pq-scan-line"></div>';
+  html += '<div class="pq-corner pq-tl"></div><div class="pq-corner pq-tr"></div>';
+  html += '<div class="pq-corner pq-bl"></div><div class="pq-corner pq-br"></div>';
+  html += '<div class="pq-logo-row"><div class="pq-dot"></div>PlanyQuiz<div class="pq-dot"></div></div>';
+  html += '<img class="pq-mascot" src="https://i.ibb.co/HfNSDf4R/Plany-Expressions-and-Situations-1.png" alt="Plany">';
+  html += '<div class="pq-title">Descubra sua planilha <em>ideal</em></div>';
+  html += '<div class="pq-sub">6 perguntas. Análise de perfil completa. Indicação 100% personalizada para você.</div>';
+  html += '<div class="pq-pills">';
+  html += '<span class="pq-pill">Menos de 2 min</span>';
+  html += '<span class="pq-pill">Resultado personalizado</span>';
+  html += '<span class="pq-pill">100% gratuito</span>';
+  html += '</div>';
+  html += '<button class="pq-btn" onclick="startQuiz()">Iniciar o PlanyQuiz &#8594;</button>';
+  html += '<div class="pq-fine">Sem compromisso &bull; Seus dados estão seguros</div>';
+  html += '</div>';
+
+  box.innerHTML = html;
+}
+
+/* ─── INICIAR QUIZ ─── */
+function startQuiz() {
+  var now = new Date().toISOString();
+  supaInsert('quiz_leads', {
+    session_id: state.sessionId,
+    iniciou_quiz: true,
+    iniciou_quiz_at: now
+  }, function(ok, data) {
+    if (ok && data && data[0] && data[0].id) {
+      state.leadId = data[0].id;
+    }
+  });
+  state.fase = 'quiz';
+  state.currentStep = 0;
+  renderQuizStep();
+}
+
+/* ─── RENDER PERGUNTA ─── */
+function renderQuizStep() {
+  var box = document.getElementById('qbox');
+  var idx = state.currentStep;
+  var step = quizSteps[idx];
+  var html = '';
+
+  html += '<div class="prog-wrap">';
+  html += '<div class="prog-label"><span>' + step.label + '</span><span>' + step.progress + '%</span></div>';
+  html += '<div class="prog-bar"><div class="prog-fill" style="width:' + step.progress + '%"></div></div>';
+  html += '</div>';
+  html += '<div class="plany-row">' + PLANY + '<div class="plany-bubble">' + step.question + '</div></div>';
+  html += '<div class="quiz-opts">';
+  for (var i = 0; i < step.opts.length; i++) {
+    html += '<button class="opt-btn" onclick="selectOpt(' + idx + ',' + i + ',this)">' + step.opts[i].text + '</button>';
+  }
+  html += '</div>';
+  if (idx > 0) html += '<button class="btn-back" onclick="goBack()">&#8592; Voltar</button>';
+  box.innerHTML = html;
+}
+
+function selectOpt(stepIdx, optIdx, btn) {
+  var step = quizSteps[stepIdx];
+  var opt = step.opts[optIdx];
+  var pts = opt.pts;
+  var pkeys = Object.keys(pts);
+  for (var i = 0; i < pkeys.length; i++) {
+    state.scores[pkeys[i]] = (state.scores[pkeys[i]] || 0) + pts[pkeys[i]];
+  }
+  state.answers[step.id] = optIdx;
+
+  var btns = document.querySelectorAll('.opt-btn');
+  for (var j = 0; j < btns.length; j++) btns[j].classList.remove('selected');
+  btn.classList.add('selected');
+
+  setTimeout(function() {
+    state.currentStep++;
+    if (state.currentStep >= quizSteps.length) showSpinner();
+    else renderQuizStep();
+  }, 320);
+}
+
+function goBack() {
+  if (state.currentStep > 0) {
+    var prevStep = quizSteps[state.currentStep - 1];
+    var prevOptIdx = state.answers[prevStep.id];
+    if (prevOptIdx !== undefined && prevStep.opts[prevOptIdx]) {
+      var pts = prevStep.opts[prevOptIdx].pts;
+      var pkeys = Object.keys(pts);
+      for (var i = 0; i < pkeys.length; i++) {
+        state.scores[pkeys[i]] = (state.scores[pkeys[i]] || 0) - pts[pkeys[i]];
+      }
+    }
+    delete state.answers[prevStep.id];
+    state.currentStep--;
+    renderQuizStep();
+  }
+}
+
+/* ─── SPINNER ─── */
+function showSpinner() {
+  state.fase = 'spinner';
+  var box = document.getElementById('qbox');
+  var html = '';
+  html += '<style>';
+  html += '@keyframes plany-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}';
+  html += '@keyframes plany-pulse{0%,100%{opacity:.5;transform:scale(.97)}50%{opacity:1;transform:scale(1)}}';
+  html += '</style>';
+  html += '<div style="text-align:center;padding:32px 16px;">';
+  html += '<div style="width:72px;height:72px;border:5px solid #D9EDEC;border-top-color:#0F827D;border-radius:50%;animation:plany-spin 1s linear infinite;margin:0 auto 28px;"></div>';
+  html += '<div style="font-size:20px;font-weight:800;color:#0F827D;margin-bottom:8px;animation:plany-pulse 1.6s ease-in-out infinite;">Calculando seu resultado...</div>';
+  html += '<div style="font-size:14px;color:#6b7280;line-height:1.6;">O Plany está analisando suas respostas<br>e encontrando a combinação perfeita para você.</div>';
+  html += '</div>';
+  box.innerHTML = html;
+
+  var delay = 2200 + Math.random() * 800;
+  setTimeout(function() { showUnlock(); }, delay);
+}
+
+/* ─── DESBLOQUEAR RESULTADO ─── */
+function showUnlock() {
+  state.fase = 'unlock';
+  var box = document.getElementById('qbox');
+  var html = '';
+  html += '<div class="prog-wrap">';
+  html += '<div class="prog-label"><span>Quase la!</span><span>99%</span></div>';
+  html += '<div class="prog-bar"><div class="prog-fill" style="width:99%"></div></div>';
+  html += '</div>';
+  html += '<div class="plany-row">' + PLANY;
+  html += '<div class="plany-bubble">Encontrei a planilha <strong>ideal para você</strong>! Para revelar seu resultado personalizado, me diz seu nome e e-mail:</div></div>';
+  html += '<div class="lead-fields">';
+  html += '<input type="text" id="inp-name" placeholder="Seu nome" value="' + state.name + '">';
+  html += '<input type="email" id="inp-email" placeholder="Seu melhor e-mail" value="' + state.email + '">';
+  html += '<div class="err-msg" id="err-msg">Por favor, preencha nome e e-mail válidos.</div>';
+  html += '<button class="btn-quiz-cta" onclick="unlockResult()">🔓 Desbloquear meu resultado</button>';
+  html += '<p class="privacy-note">Seus dados ficam só com a gente. Sem spam, prometido.</p>';
+  html += '</div>';
+  box.innerHTML = html;
+}
+
+function unlockResult() {
+  var n = document.getElementById('inp-name').value.trim();
+  var e = document.getElementById('inp-email').value.trim();
+  var errEl = document.getElementById('err-msg');
+  var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  if (!n || !emailOk) {
+    errEl.style.display = 'block';
+    if (!n) document.getElementById('inp-name').classList.add('input-err');
+    if (!emailOk) document.getElementById('inp-email').classList.add('input-err');
+    return;
+  }
+  state.name = n;
+  state.email = e;
+
+  var key = calcResult();
+  var p = productData[key];
+  var now = new Date().toISOString();
+
+  var updatePayload = {
+    nome: n,
+    email: e,
+    email_fornecido_at: now,
+    resposta_q1: state.answers['q1'] !== undefined ? quizSteps[0].opts[state.answers['q1']].text : null,
+    resposta_q2: state.answers['q2'] !== undefined ? quizSteps[1].opts[state.answers['q2']].text : null,
+    resposta_q3: state.answers['q3'] !== undefined ? quizSteps[2].opts[state.answers['q3']].text : null,
+    resposta_q4: state.answers['q4'] !== undefined ? quizSteps[3].opts[state.answers['q4']].text : null,
+    resposta_q5: state.answers['q5'] !== undefined ? quizSteps[4].opts[state.answers['q5']].text : null,
+    resposta_q6: state.answers['q6'] !== undefined ? quizSteps[5].opts[state.answers['q6']].text : null,
+    produto_recomendado: key,
+    codigo_produto: p.codigo,
+    clicou_produto: false
+  };
+
+  if (state.leadId) {
+    supaUpdate('quiz_leads', state.leadId, updatePayload, null);
+  } else {
+    supaInsert('quiz_leads', Object.assign({ session_id: state.sessionId, iniciou_quiz: true }, updatePayload), function(ok, data) {
+      if (ok && data && data[0] && data[0].id) state.leadId = data[0].id;
+    });
+  }
+
+  renderResult(key);
+}
+
+/* ─── RESULTADO ─── */
+function renderResult(key) {
+  state.fase = 'result';
+  var p = productData[key];
+  var firstName = state.name.split(' ')[0];
+  var box = document.getElementById('qbox');
+  var ctaLabel = (p.link === 'INSIRA LINK AQUI') ? 'Em breve — fique de olho!' : 'Quero organizar isso agora &#8594;';
+  var ctaDisabled = (p.link === 'INSIRA LINK AQUI') ? ' disabled style="opacity:.6;cursor:default;"' : '';
+
+  var html = '';
+  html += '<div class="prog-wrap"><div class="prog-label"><span>Resultado!</span><span>100%</span></div>';
+  html += '<div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div></div>';
+  html += '<div class="result-box">';
+  html += '<div class="result-bingo">Bingo, ' + firstName + '! Encontrei o que você precisa.</div>';
+  html += '<div class="result-mockup"><img src="' + p.img + '" alt="' + p.name + '"></div>';
+  html += '<div class="result-label">A sua planilha ideal é:</div>';
+  html += '<div class="result-product-name">' + p.name + '</div>';
+  html += '<div class="result-price">' + p.price + '</div>';
+  html += '<div class="result-desc">' + p.desc + '</div>';
+  html += '<div class="result-email-note">Vamos enviar dicas para <strong>' + state.email + '</strong></div>';
+  html += '<button class="btn-result" onclick="trackClick(\'' + p.link + '\')"' + ctaDisabled + '>' + ctaLabel + '</button>';
+  html += '<button class="btn-restart" onclick="restartQuiz()">Refazer o quiz</button>';
+  html += '</div>';
+  box.innerHTML = html;
+}
+
+function trackClick(link) {
+  if (!link || link === 'INSIRA LINK AQUI') return;
+  if (state.leadId) {
+    supaUpdate('quiz_leads', state.leadId, {
+      clicou_produto: true,
+      clicou_produto_at: new Date().toISOString()
+    }, null);
+  }
+  window.open(link, '_blank');
+}
+
+function restartQuiz() {
+  state = {
+    fase: 'cta',
+    currentStep: 0,
+    answers: {},
+    scores: {},
+    sessionId: genSessionId(),
+    leadId: null,
+    name: '',
+    email: ''
+  };
+  initScores();
+  renderCta();
+}
+
+/* ═══ PLAYCHAT ═══ */
+function submitPlaychat() {
+  var nEl = document.getElementById('pc-nome');
+  var eEl = document.getElementById('pc-email');
+  var errEl = document.getElementById('pc-err-msg');
+  var btn = document.getElementById('btn-vip');
+
+  nEl.classList.remove('pc-err');
+  eEl.classList.remove('pc-err');
+  errEl.style.display = 'none';
+
+  var n = nEl.value.trim();
+  var e = eEl.value.trim();
+  var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+
+  if (!n || !emailOk) {
+    if (!n) nEl.classList.add('pc-err');
+    if (!emailOk) eEl.classList.add('pc-err');
+    errEl.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  supaInsert('playchat_leads', { nome: n, email: e }, function(ok) {
+    btn.disabled = false;
+    btn.textContent = 'Entrar na Lista VIP';
+    if (ok) {
+      nEl.value = '';
+      eEl.value = '';
+      openPopup(n);
+    } else {
+      errEl.textContent = 'Erro ao salvar. Tente novamente.';
+      errEl.style.display = 'block';
+    }
+  });
+}
+
+function openPopup(name) {
+  var firstName = name ? name.split(' ')[0] : '';
+  var titleEl = document.getElementById('popup-title');
+  var msgEl = document.getElementById('popup-msg');
+  if (firstName) {
+    titleEl.innerHTML = firstName + ', você é do <span>VIPlany Club!</span>';
+  } else {
+    titleEl.innerHTML = 'Você é do <span>VIPlany Club!</span>';
+  }
+  msgEl.textContent = 'Obrigado por se juntar a nós! Você será um dos primeiros a saber quando o PlanyChat chegar. Enquanto isso, que tal dar uma olhada nos nossos produtos?';
+  document.getElementById('vip-popup').classList.add('active');
+}
+
+function closePopup() {
+  document.getElementById('vip-popup').classList.remove('active');
+}
+
+function closePopupAndScroll() {
+  closePopup();
+  setTimeout(function() {
+    document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' });
+  }, 200);
+}
+
+document.getElementById('vip-popup').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
+
+/* ═══ FAQ ═══ */
+function toggleFaq(btn) {
+  var answer = btn.nextElementSibling;
+  var isOpen = answer.classList.contains('open');
+  var allA = document.querySelectorAll('.faq-a');
+  var allB = document.querySelectorAll('.faq-q');
+  for (var i = 0; i < allA.length; i++) allA[i].classList.remove('open');
+  for (var i = 0; i < allB.length; i++) allB[i].classList.remove('open');
+  if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+}
+
+/* ═══ INIT ═══ */
+initScores();
+renderCta();
+</script>
+</body>
+</html>
