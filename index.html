@@ -110,8 +110,8 @@ nav a:hover { color: var(--green); background: var(--green-light); }
 .product-card:hover { border-color: var(--green-border); transform: translateY(-5px); box-shadow: var(--sh-md); }
 .product-card.featured { border-color: var(--green); border-width: 2px; position: relative; background: var(--green-xlight); }
 .featured-badge { position: absolute; top: -13px; left: 20px; background: var(--green); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 14px; border-radius: var(--r-pill); box-shadow: 0 2px 8px rgba(15,130,125,.3); }
-.product-img-wrap { width: 100%; height: 155px; background: var(--green-light); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 4px; }
-.product-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 10px; transition: transform .3s ease; }
+.product-img-wrap { width: 100%; height: 155px; background: var(--green-light); border-radius: var(--r-md); overflow: hidden; margin-bottom: 4px; }
+.product-img-wrap img { width: 100%; height: 100%; object-fit: cover; padding: 0; transition: transform .3s ease; }
 .product-card:hover .product-img-wrap img { transform: scale(1.04); }
 .product-name { font-size: 15px; font-weight: 700; line-height: 1.3; }
 .product-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; flex: 1; }
@@ -247,7 +247,7 @@ footer { background: var(--text); color: #fff; padding: 52px 48px; text-align: c
       <h1>Organize seu dinheiro e sua rotina <span>sem complicação.</span></h1>
       <p>Ferramentas visuais e intuitivas para quem quer parar de patinar na vida financeira e nos hábitos.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Fazer o Plany<em>Quiz</em></button>
+        <button class="btn-primary" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Fazer o Quiz do Plany</button>
         <button class="btn-secondary" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">Ver todos os produtos</button>
       </div>
       <div class="hero-stats">
@@ -267,9 +267,7 @@ footer { background: var(--text); color: #fff; padding: 52px 48px; text-align: c
   <div class="quiz-inner">
     <div style="text-align:center;margin-bottom:36px;">
       <div class="section-tag">Quiz interativo</div>
-      <h2 style="font-size:34px;font-weight:800;margin-bottom:10px;letter-spacing:-.5px;">
-        Plany<span style="color:#0F827D; font-style: normal;">Quiz</span>
-      </h2>
+      <h2 style="font-size:34px;font-weight:800;margin-bottom:10px;letter-spacing:-.5px;">Quiz do Plany</h2>
       <p style="font-size:17px;color:#6b7280;max-width:440px;margin:0 auto;">Responda algumas perguntas e descubra a planilha feita para você.</p>
     </div>
     <div class="quiz-box" id="qbox"></div>
@@ -287,14 +285,14 @@ footer { background: var(--text); color: #fff; padding: 52px 48px; text-align: c
   <div class="cat-row"><div class="cat-label">Finanças</div><div class="cat-line"></div></div>
   <div class="products-grid">
     <div class="product-card">
-      <div class="product-img-wrap"><img src="https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png" alt="Planilhou Financas"></div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/xt9HDn89/Planilhou-Financ-as.png" alt="Planilhou Financas"></div>
       <div class="product-name">Planilhou Finanças</div>
       <div class="product-desc">Controle visual e prático para entradas, saídas e metas mensais.</div>
       <div class="product-price">R$ 21,99</div>
       <a class="btn-buy" href="https://chk.eduzz.com/89AQZ8E6WD" target="_blank">Comprar Agora</a>
     </div>
     <div class="product-card">
-      <div class="product-img-wrap"><img src="https://i.ibb.co/s9Q0mY0t/Ebook.png" alt="Ebook"></div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/tTmmfJvW/Ebook.png" alt="Ebook"></div>
       <div class="product-name">Ebook Planilhou Finanças</div>
       <div class="product-desc">20 estratégias para dominar seu dinheiro de vez. O par perfeito da planilha.</div>
       <div class="product-price">R$ 9,99</div>
@@ -305,7 +303,7 @@ footer { background: var(--text); color: #fff; padding: 52px 48px; text-align: c
   <div class="cat-row"><div class="cat-label">Rotina</div><div class="cat-line"></div></div>
   <div class="products-grid">
     <div class="product-card">
-      <div class="product-img-wrap"><img src="https://i.ibb.co/Wp4VF3jj/Planilhou-Ha-bitos.png" alt="Habitos"></div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/HTxY966B/Planilhou-Ha-bitos.png" alt="Habitos"></div>
       <div class="product-name">Planilhou Hábitos</div>
       <div class="product-desc">Crie constância e acompanhe seus hábitos diários com leveza e clareza.</div>
       <div class="product-price">R$ 21,99</div>
@@ -316,14 +314,14 @@ footer { background: var(--text); color: #fff; padding: 52px 48px; text-align: c
   <div class="cat-row"><div class="cat-label">Projetos específicos</div><div class="cat-line"></div></div>
   <div class="products-grid">
     <div class="product-card">
-      <div class="product-img-wrap"><img src="https://i.ibb.co/hx5D5WjG/Planilhou-Novo-Lar.png" alt="Novo Lar"></div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/nNwzFJmH/Planilhou-Novo-Lar.png" alt="Novo Lar"></div>
       <div class="product-name">Planilhou Novo Lar</div>
       <div class="product-desc">Organize visitas e compare apartamentos na busca do seu lugar ideal.</div>
       <div class="product-price">R$ 29,90</div>
       <a class="btn-buy" href="https://chk.eduzz.com/7977P6KV9E" target="_blank">Comprar Agora</a>
     </div>
     <div class="product-card">
-      <div class="product-img-wrap"><img src="https://i.ibb.co/4wjcGptT/Planilhou-Ha-bitos-3.png" alt="Wishlist"></div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/pvtgCgZk/Planilhou-Ha-bitos-2.png" alt="Wishlist"></div>
       <div class="product-name">Planilhou Wishlist</div>
       <div class="product-desc">Compre o que deseja com prioridade e sem furar o orçamento.</div>
       <div class="product-price">R$ 29,90</div>
@@ -336,7 +334,7 @@ footer { background: var(--text); color: #fff; padding: 52px 48px; text-align: c
 
     <div class="product-card featured">
       <div class="featured-badge">Mais vendido</div>
-      <div class="product-img-wrap"><img src="https://i.ibb.co/99YR4Wh1/Planilhou-Ha-bitos-2.png" alt="Combo Life Hack"></div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/5xxXJ7xz/Life-Pack.png" alt="Combo Life Hack"></div>
       <div class="product-name">Combo Life Hack</div>
       <div class="product-desc">Finanças + Hábitos. Reset completo na sua vida financeira e rotina.</div>
       <div class="product-price">R$ 39,90</div>
@@ -345,39 +343,29 @@ footer { background: var(--text); color: #fff; padding: 52px 48px; text-align: c
 
     <div class="product-card featured" style="margin-top:0;">
       <div class="featured-badge">Novo</div>
-      <div class="product-img-wrap">
-        <img src="https://i.ibb.co/4wjcGptT/Planilhou-Ha-bitos-3.png" alt="Combo Bolso Inteligente" style="width:50%;height:50%;object-fit:contain;padding:4px;">
-        <img src="https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png" alt="" style="width:50%;height:50%;object-fit:contain;padding:4px;">
-      </div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/bj5JJ14X/Bolso-Inteligente.png" alt="Combo Bolso Inteligente"></div>
       <div class="product-name">Combo Bolso Inteligente</div>
       <div class="product-desc">Planilhou Finanças + Wishlist. Para quem quer comprar com consciência e manter o orçamento no azul.</div>
       <div class="product-price">R$ 47,99</div>
-      <a class="btn-buy" href="INSIRA LINK AQUI" target="_blank">Comprar Agora</a>
+      <a class="btn-buy" href="https://chk.eduzz.com/797ZD2640E" target="_blank">Comprar Agora</a>
     </div>
 
     <div class="product-card featured" style="margin-top:0;">
       <div class="featured-badge">Novo</div>
-      <div class="product-img-wrap">
-        <img src="https://i.ibb.co/hx5D5WjG/Planilhou-Novo-Lar.png" alt="Combo Lar dos Sonhos" style="width:50%;height:50%;object-fit:contain;padding:4px;">
-        <img src="https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png" alt="" style="width:50%;height:50%;object-fit:contain;padding:4px;">
-      </div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/MxZ4xxbG/Lar-dos-Sonhos.png" alt="Combo Lar dos Sonhos"></div>
       <div class="product-name">Combo Lar dos Sonhos</div>
       <div class="product-desc">Planilhou Finanças + Novo Lar. Para quem quer alugar um apto sem perder o controle financeiro.</div>
       <div class="product-price">R$ 47,99</div>
-      <a class="btn-buy" href="INSIRA LINK AQUI" target="_blank">Comprar Agora</a>
+      <a class="btn-buy" href="https://chk.eduzz.com/KW8Z72AK01" target="_blank">Comprar Agora</a>
     </div>
 
     <div class="product-card featured" style="margin-top:0;">
       <div class="featured-badge">Novo</div>
-      <div class="product-img-wrap" style="flex-wrap:wrap;gap:2px;">
-        <img src="https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png" alt="" style="width:33%;height:100%;object-fit:contain;padding:4px;">
-        <img src="https://i.ibb.co/4wjcGptT/Planilhou-Ha-bitos-3.png" alt="" style="width:33%;height:100%;object-fit:contain;padding:4px;">
-        <img src="https://i.ibb.co/Wp4VF3jj/Planilhou-Ha-bitos.png" alt="" style="width:33%;height:100%;object-fit:contain;padding:4px;">
-      </div>
+      <div class="product-img-wrap"><img src="https://i.ibb.co/2YZXSJq4/Life-PRO.png" alt="Combo Life Pro"></div>
       <div class="product-name">Combo Life Pro</div>
       <div class="product-desc">Planilhou Finanças + Wishlist + Hábitos. O trio completo para quem quer transformar vida financeira, hábitos e compras de uma vez.</div>
       <div class="product-price">R$ 67,99</div>
-      <a class="btn-buy" href="INSIRA LINK AQUI" target="_blank">Comprar Agora</a>
+      <a class="btn-buy" href="https://chk.eduzz.com/6W4GO5N30Z" target="_blank">Comprar Agora</a>
     </div>
 
   </div>
@@ -537,15 +525,15 @@ function genSessionId() {
 var PLANY = '<img class="plany-icon" src="https://i.ibb.co/HfNSDf4R/Plany-Expressions-and-Situations-1.png" alt="Plany">';
 
 var productData = {
-  financas:  { name:'Planilhou Financas',          price:'R$ 21,99', link:'https://chk.eduzz.com/89AQZ8E6WD',  codigo:'PLANY-PLAN-ENTR-001', desc:'Controle visual e prático das suas entradas e saídas.',                                     img:'https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png' },
-  ebook:     { name:'Ebook Planilhou Financas',    price:'R$ 9,99',  link:'https://chk.eduzz.com/Q9N5N8VK01', codigo:'PLANY-EBOO-SIMP-002', desc:'20 estratégias para dominar seu bolso. O par ideal com a planilha.',                        img:'https://i.ibb.co/s9Q0mY0t/Ebook.png' },
-  habitos:   { name:'Planilhou Habitos',           price:'R$ 21,99', link:'https://chk.eduzz.com/69KA87480O', codigo:'PLANY-PLAN-ENTR-002', desc:'Crie constância e acompanhe hábitos diários com leveza.',                                  img:'https://i.ibb.co/Wp4VF3jj/Planilhou-Ha-bitos.png' },
-  wishlist:  { name:'Planilhou Wishlist',          price:'R$ 29,90', link:'https://chk.eduzz.com/6W48X7GY0Z', codigo:'PLANY-PLAN-COMP-002', desc:'Compre o que deseja com prioridade e sem furar o orçamento.',                            img:'https://i.ibb.co/4wjcGptT/Planilhou-Ha-bitos-3.png' },
-  novoLar:   { name:'Planilhou Novo Lar',          price:'R$ 29,90', link:'https://chk.eduzz.com/7977P6KV9E', codigo:'PLANY-PLAN-COMP-002', desc:'Organize visitas e compare apartamentos com clareza.',                                    img:'https://i.ibb.co/hx5D5WjG/Planilhou-Novo-Lar.png' },
-  lifeHack:  { name:'Combo Life Hack',             price:'R$ 39,90', link:'https://chk.eduzz.com/39ZQ4ZED9E', codigo:'PLANY-COMB-NUM1-002', desc:'Finanças + Hábitos. O pacote completo para dar um reset na sua vida.',                           img:'https://i.ibb.co/99YR4Wh1/Planilhou-Ha-bitos-2.png' },
-  bolsoInt:  { name:'Combo Bolso Inteligente',     price:'R$ 47,99', link:'INSIRA LINK AQUI',                  codigo:'PLANY-COMB-NUM3-002', desc:'Finanças + Wishlist. Organize o orçamento e compre o que deseja sem culpa.',            img:'https://i.ibb.co/4gPXsN5B/Planilhou-Financ-as.png' },
-  larSonhos: { name:'Combo Lar dos Sonhos',        price:'R$ 47,99', link:'INSIRA LINK AQUI',                  codigo:'PLANY-COMB-NUM3-002', desc:'Finanças + Novo Lar. Realize o sonho do apartamento com o orçamento no controle.',     img:'https://i.ibb.co/hx5D5WjG/Planilhou-Novo-Lar.png' },
-  lifePro:   { name:'Combo Life Pro',              price:'R$ 67,99', link:'INSIRA LINK AQUI',                  codigo:'PLANY-COMB-NUM4-003', desc:'Finanças + Wishlist + Hábitos. Transformação completa: dinheiro, compras e constância.',img:'https://i.ibb.co/Wp4VF3jj/Planilhou-Ha-bitos.png' }
+  financas:  { name:'Planilhou Financas',          price:'R$ 21,99', link:'https://chk.eduzz.com/89AQZ8E6WD',  codigo:'PLANY-PLAN-ENTR-001', desc:'Controle visual e prático das suas entradas e saídas.',                                     img:'https://i.ibb.co/xt9HDn89/Planilhou-Financ-as.png' },
+  ebook:     { name:'Ebook Planilhou Financas',    price:'R$ 9,99',  link:'https://chk.eduzz.com/Q9N5N8VK01', codigo:'PLANY-EBOO-SIMP-002', desc:'20 estratégias para dominar seu bolso. O par ideal com a planilha.',                        img:'https://i.ibb.co/tTmmfJvW/Ebook.png' },
+  habitos:   { name:'Planilhou Habitos',           price:'R$ 21,99', link:'https://chk.eduzz.com/69KA87480O', codigo:'PLANY-PLAN-ENTR-002', desc:'Crie constância e acompanhe hábitos diários com leveza.',                                  img:'https://i.ibb.co/HTxY966B/Planilhou-Ha-bitos.png' },
+  wishlist:  { name:'Planilhou Wishlist',          price:'R$ 29,90', link:'https://chk.eduzz.com/6W48X7GY0Z', codigo:'PLANY-PLAN-COMP-002', desc:'Compre o que deseja com prioridade e sem furar o orçamento.',                            img:'https://i.ibb.co/pvtgCgZk/Planilhou-Ha-bitos-2.png' },
+  novoLar:   { name:'Planilhou Novo Lar',          price:'R$ 29,90', link:'https://chk.eduzz.com/7977P6KV9E', codigo:'PLANY-PLAN-COMP-002', desc:'Organize visitas e compare apartamentos com clareza.',                                    img:'https://i.ibb.co/nNwzFJmH/Planilhou-Novo-Lar.png' },
+  lifeHack:  { name:'Combo Life Hack',             price:'R$ 39,90', link:'https://chk.eduzz.com/39ZQ4ZED9E', codigo:'PLANY-COMB-NUM1-002', desc:'Finanças + Hábitos. O pacote completo para dar um reset na sua vida.',                           img:'https://i.ibb.co/5xxXJ7xz/Life-Pack.png' },
+  bolsoInt:  { name:'Combo Bolso Inteligente',     price:'R$ 47,99', link:'https://chk.eduzz.com/797ZD2640E',  codigo:'PLANY-COMB-NUM3-002', desc:'Finanças + Wishlist. Organize o orçamento e compre o que deseja sem culpa.',            img:'https://i.ibb.co/bj5JJ14X/Bolso-Inteligente.png' },
+  larSonhos: { name:'Combo Lar dos Sonhos',        price:'R$ 47,99', link:'https://chk.eduzz.com/KW8Z72AK01',  codigo:'PLANY-COMB-NUM3-002', desc:'Finanças + Novo Lar. Realize o sonho do apartamento com o orçamento no controle.',     img:'https://i.ibb.co/MxZ4xxbG/Lar-dos-Sonhos.png' },
+  lifePro:   { name:'Combo Life Pro',              price:'R$ 67,99', link:'https://chk.eduzz.com/6W4GO5N30Z',  codigo:'PLANY-COMB-NUM4-003', desc:'Finanças + Wishlist + Hábitos. Transformação completa: dinheiro, compras e constância.',img:'https://i.ibb.co/2YZXSJq4/Life-PRO.png' }
 };
 
 var tieBreaker = ['lifePro','lifeHack','bolsoInt','larSonhos','wishlist','novoLar','financas','habitos','ebook'];
